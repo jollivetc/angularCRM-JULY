@@ -4,12 +4,13 @@
       <mat-form-field>
         <mat-label for="login">Email</mat-label>
         <input matInput id="login" formControlName="login"/>
-        <span *ngIf="loginForm.get('login')?.touched || loginForm.get('login')?.dirty
-                          && loginForm.get('login')?.errors">
-            <span *ngIf="loginForm.get('login')?.errors?.['required']">required</span>
-            <span *ngIf="loginForm.get('login')?.errors?.['minlength']">min length</span>
-        </span>
       </mat-form-field>
+      <crm-help [field]="loginForm.get('login')!"
+                [errorMessages]="{
+                  required : 'it is required',
+                  minlength: 'it is too short'
+                }"></crm-help>
+
     </p>
     <p>
       <mat-form-field>
