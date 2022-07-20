@@ -8,5 +8,11 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   title = 'angularCRM';
-  
+
+  handle($event:any):void{
+    console.log($event);
+  }
+  handle2($event:any):void{
+    console.log($event);
+  }
 }
