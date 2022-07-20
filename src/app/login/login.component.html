@@ -6,10 +6,7 @@
         <input matInput id="login" formControlName="login"/>
       </mat-form-field>
       <crm-help [field]="loginForm.get('login')!"
-                [errorMessages]="{
-                  required : 'it is required',
-                  minlength: 'it is too short'
-                }"></crm-help>
+                [errorMessages]="loginErrorMessage"></crm-help>
 
     </p>
     <p>
