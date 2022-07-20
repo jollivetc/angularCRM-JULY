@@ -1,20 +1,24 @@
 <div>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <p>
-      <label for="login">Email</label>
-      <input id="login" formControlName="login"/>
-      <span *ngIf="loginForm.get('login')?.touched || loginForm.get('login')?.dirty
-                        && loginForm.get('login')?.errors">
-          <span *ngIf="loginForm.get('login')?.errors?.['required']">required</span>
-          <span *ngIf="loginForm.get('login')?.errors?.['minlength']">min length</span>
-      </span>
+      <mat-form-field>
+        <mat-label for="login">Email</mat-label>
+        <input matInput id="login" formControlName="login"/>
+        <span *ngIf="loginForm.get('login')?.touched || loginForm.get('login')?.dirty
+                          && loginForm.get('login')?.errors">
+            <span *ngIf="loginForm.get('login')?.errors?.['required']">required</span>
+            <span *ngIf="loginForm.get('login')?.errors?.['minlength']">min length</span>
+        </span>
+      </mat-form-field>
     </p>
     <p>
-      <label for="password">Password</label>
-      <input id="password" type="password" formControlName="password"/>
+      <mat-form-field>
+        <mat-label for="password">Password</mat-label>
+        <input matInput id="password" type="password" formControlName="password"/>
+      </mat-form-field>
     </p>
     <p>
-      <button type="submit"
+      <button mat-button type="submit" color="primary"
               [disabled]="!loginForm.valid">Login</button>
     </p>
   </form>
