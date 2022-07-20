@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'crm-root',
@@ -14,9 +15,16 @@ export class AppComponent {
     age:33
   }
   cssClass = 'red';
+  email='myemail.com'
 
   clicked($event:any):void{
     console.log($event)
     this.title='see you tomorrow';
+  }
+
+  registerUser(signupForm :NgForm){
+    console.log(`the email is ${this.email}`)
+    console.log(signupForm.value)
+    this.email = "toto";
   }
 }
