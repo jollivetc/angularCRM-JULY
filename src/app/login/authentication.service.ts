@@ -22,6 +22,7 @@ export class AuthenticationService {
 
    disconnect():void{
     sessionStorage.clear();
+    this.user = undefined;
    }
 
   authentUser(login:string, password: string):User{
