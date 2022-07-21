@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     minlength: 'it is too short'
   }
 
-  constructor(private authent: AuthenticationService) {
+  constructor(private authent: AuthenticationService, private router:Router) {
+    this.authent.disconnect();
     this.loginForm = new FormGroup({
       login: new FormControl('',[Validators.required, Validators.minLength(3)]),
       password : new FormControl('',[Validators.required, checkPassword])
@@ -31,7 +33,9 @@ export class LoginComponent implements OnInit {
         this.loginForm.value.login,
         this.loginForm.value.password
     );
-    console.log(user);
+    if(user){
+      this.router.navigateByUrl('/home')
+    }
   }
 }
 
