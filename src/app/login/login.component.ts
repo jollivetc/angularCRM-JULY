@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AuthenticationService } from './authentication.service';
 
 @Component({
   selector: 'crm-login',
@@ -15,8 +16,7 @@ export class LoginComponent implements OnInit {
     minlength: 'it is too short'
   }
 
-
-  constructor() {
+  constructor(private authent: AuthenticationService) {
     this.loginForm = new FormGroup({
       login: new FormControl('',[Validators.required, Validators.minLength(3)]),
       password : new FormControl('',[Validators.required, checkPassword])
@@ -27,7 +27,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit():void{
-    console.log(this.loginForm)
+    const user = this.authent.authentUser(
+        this.loginForm.value.login,
+        this.loginForm.value.password
+    );
+    console.log(user);
   }
 }
 
