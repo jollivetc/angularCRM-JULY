@@ -76,7 +76,8 @@
               "browserTarget": "angularCRM:build:production"
             },
             "development": {
-              "browserTarget": "angularCRM:build:development"
+              "browserTarget": "angularCRM:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
