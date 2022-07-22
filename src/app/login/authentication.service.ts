@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { User } from './model/user';
 
@@ -14,7 +14,7 @@ export class AuthenticationService {
   private user?: User;
   private token?: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient ) {
     if(sessionStorage.getItem(USER_KEY)){
       this.user = JSON.parse(sessionStorage.getItem(USER_KEY)!);
       this.token = sessionStorage.getItem(TOKEN_KEY)!;

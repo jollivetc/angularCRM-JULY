@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 
 @Injectable({
@@ -6,7 +7,8 @@ import { Observable, Subscriber } from 'rxjs';
 })
 export class DemoObservableService {
 
-  constructor() { }
+  constructor() {
+   }
 
   test():Observable<number>{
     return new Observable<number>(

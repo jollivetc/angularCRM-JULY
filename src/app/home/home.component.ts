@@ -10,6 +10,7 @@ import { DemoObservableService } from '../common/demo-observable.service';
 export class HomeComponent implements OnInit, OnDestroy {
 
   observable?: Observable<number>;
+  phoneNumber = '0123456789';
 
   private subs: Subscription[]=[];
 
