@@ -10,15 +10,23 @@ import { Consumer } from '../model/consumer';
 export class ConsumerListComponent implements OnInit {
 
   consumers: Consumer[] = [];
+  query: string=''
 
   constructor(private consumerService: ConsumerService) { }
 
   ngOnInit(): void {
-    this.consumerService.getAllConsumers().subscribe({
+   this.consumerService.getAllConsumers().subscribe({
+      next: (data)=>{this.consumers=data},
+      error: (error)=> {console.error(error)},
+      complete:()=>{}
+   })
+  }
+
+  search():void{
+    this.consumerService.search(this.query).subscribe({
       next: (data)=>{this.consumers=data},
       error: (error)=> {console.error(error)},
       complete:()=>{}
     })
   }
-
 }

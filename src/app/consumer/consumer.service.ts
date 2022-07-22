@@ -13,4 +13,8 @@ export class ConsumerService {
   getAllConsumers():Observable<Consumer[]>{
     return this.http.get<Consumer[]>('/api/consumers')
   }
+
+  search(query:string):Observable<Consumer[]>{
+    return this.http.get<Consumer[]>(`/api/consumers?q=${query}`)
+  }
 }
