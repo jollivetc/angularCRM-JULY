@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { JWTInterceptorService } from './common/jwtinterceptor.service';
 import { PhonePipe } from './common/phone.pipe';
 import { ConsumerListComponent } from './consumer/consumer-list/consumer-list.component';
+import { ConsumerFormComponent } from './consumer/consumer-form/consumer-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ConsumerListComponent } from './consumer/consumer-list/consumer-list.co
     HelpComponent,
     HomeComponent,
     PhonePipe,
-    ConsumerListComponent
+    ConsumerListComponent,
+    ConsumerFormComponent
   ],
   imports: [
     BrowserModule,
