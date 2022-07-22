@@ -3,7 +3,10 @@
     <p>
       <mat-form-field>
         <mat-label for="civility">Civility</mat-label>
-        <input matInput id="civility" formControlName="civility"/>
+        <mat-select id="civility" formControlName="civility">
+          <mat-option value="Mr">Mr</mat-option>
+          <mat-option value="Ms">Ms</mat-option>
+        </mat-select>
       </mat-form-field>
     </p>
     <p>
@@ -35,3 +38,5 @@
     </p>
   </form>
 </div>
+<button (click)="cancel()">Cancel</button>
+<a routerLink="/consumers">Cancel</a>

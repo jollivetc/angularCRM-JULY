@@ -18,7 +18,7 @@ export class ConsumerService {
     return this.http.get<Consumer[]>(`/api/consumers?q=${query}`)
   }
 
-  record(consumer:Consumer){
-    return this.http.post<any>('/api/consumers', consumer)
+  record(consumer:Consumer): Observable<Consumer>{
+    return this.http.post<Consumer>('/api/consumers', consumer)
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ConsumerListComponent } from '../consumer-list/consumer-list.component';
 import { ConsumerService } from '../consumer.service';
 import { Consumer } from '../model/consumer';
 
@@ -27,11 +26,14 @@ export class ConsumerFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  validate(){
+  validate():void{
     this.consumerService.record(this.consumerForm.value).subscribe({
-      next: (data)=>{this.router.navigateByUrl('/consumers')},
+      next: (data:Consumer)=>{console.log(data);this.router.navigateByUrl('/consumers')},
       error: (error)=>{console.error(error)},
       complete: ()=>{}
     })
+  }
+  cancel():void{
+    this.router.navigateByUrl('/consumers');
   }
 }
