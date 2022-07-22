@@ -29,4 +29,7 @@ export class ConsumerService {
       return this.http.post<Consumer>('/api/consumers', consumer)
     }
   }
+  delete(id:number):Observable<Object>{
+    return this.http.delete(`/api/consumers/${id}`)
+  }
 }

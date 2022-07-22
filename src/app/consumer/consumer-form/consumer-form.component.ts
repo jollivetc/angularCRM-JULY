@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ConsumerService } from '../consumer.service';
 import { Consumer } from '../model/consumer';
 
@@ -12,6 +13,7 @@ import { Consumer } from '../model/consumer';
 export class ConsumerFormComponent implements OnInit {
 
   consumerForm: FormGroup;
+  private subs: Subscription[]= [];
 
   constructor(private consumerService: ConsumerService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.consumerForm = new FormGroup({
@@ -27,26 +29,26 @@ export class ConsumerFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe({
+    this.subs.push(this.activatedRoute.params.subscribe({
       next: (params:Params)=>{
         const id:number = params['id'];
-        this.consumerService.getById(id).subscribe({
+        this.subs.push(this.consumerService.getById(id).subscribe({
           next:(data:Consumer)=>{this.consumerForm.patchValue(data)},
           error: (error)=>{console.error(error)},
           complete: ()=>{}
-        })
+        }))
       },
       error: (error)=>{console.log(error)},
       complete: ()=>{}
-    })
+    }));
   }
 
   validate():void{
-    this.consumerService.record(this.consumerForm.value).subscribe({
+    this.subs.push(this.consumerService.record(this.consumerForm.value).subscribe({
       next: (data:Consumer)=>{this.router.navigateByUrl('/consumers')},
       error: (error)=>{console.error(error)},
       complete: ()=>{}
-    })
+    }))
   }
   cancel():void{
     this.router.navigateByUrl('/consumers');
