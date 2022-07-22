@@ -20,6 +20,13 @@
     <td>{{consumer.lastname}}</td>
     <td>{{consumer.phone | phone}}</td>
     <td>{{consumer.email}}</td>
-    <td></td>
+    <td>
+      <span>
+        <a mat-icon-button matTooltip="Edit"
+            [routerLink]="['/consumerform', consumer.id]">
+          <mat-icon>edit</mat-icon>
+        </a>
+      </span>
+    </td>
   </tr>
 </table>

@@ -18,7 +18,15 @@ export class ConsumerService {
     return this.http.get<Consumer[]>(`/api/consumers?q=${query}`)
   }
 
+  getById(id: number): Observable<Consumer>{
+    return this.http.get<Consumer>(`/api/consumers/${id}`);
+  }
+
   record(consumer:Consumer): Observable<Consumer>{
-    return this.http.post<Consumer>('/api/consumers', consumer)
+    if(consumer.id){
+      return this.http.put<Consumer>(`/api/consumers/${consumer.id}`, consumer)
+    }else{
+      return this.http.post<Consumer>('/api/consumers', consumer)
+    }
   }
 }
