@@ -17,4 +17,8 @@ export class ConsumerService {
   search(query:string):Observable<Consumer[]>{
     return this.http.get<Consumer[]>(`/api/consumers?q=${query}`)
   }
+
+  record(consumer:Consumer){
+    return this.http.post<any>('/api/consumers', consumer)
+  }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConsumerFormComponent } from './consumer/consumer-form/consumer-form.component';
 import { ConsumerListComponent } from './consumer/consumer-list/consumer-list.component';
 import { HomeComponent } from './home/home.component';
 import { AuthenticationGuard } from './login/authentication.guard';
@@ -10,6 +11,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'home', component:HomeComponent, canActivate:[AuthenticationGuard]},
   {path: 'consumers', component: ConsumerListComponent, canActivate:[AuthenticationGuard]},
+  {path:'consumerform', component: ConsumerFormComponent, canActivate:[AuthenticationGuard]},
   {path:'**', redirectTo:'home', pathMatch:'full'}
 ];
 

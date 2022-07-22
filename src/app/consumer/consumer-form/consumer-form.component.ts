@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ConsumerListComponent } from '../consumer-list/consumer-list.component';
+import { ConsumerService } from '../consumer.service';
+import { Consumer } from '../model/consumer';
 
 @Component({
   selector: 'crm-consumer-form',
@@ -7,9 +12,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsumerFormComponent implements OnInit {
 
-  constructor() { }
+  consumerForm: FormGroup;
+
+  constructor(private consumerService: ConsumerService, private router: Router) {
+    this.consumerForm = new FormGroup({
+      civility: new FormControl('', [Validators.required]),
+      firstname: new FormControl('', [Validators.required]),
+      lastname: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phone: new FormControl('', [Validators.required]),
+    })
+   }
 
   ngOnInit(): void {
   }
 
+  validate(){
+    this.consumerService.record(this.consumerForm.value).subscribe({
+      next: (data)=>{this.router.navigateByUrl('/consumers')},
+      error: (error)=>{console.error(error)},
+      complete: ()=>{}
+    })
+  }
 }
