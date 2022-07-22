@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConsumerService } from '../consumer.service';
+import { Consumer } from '../model/consumer';
 
 @Component({
   selector: 'crm-consumer-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsumerListComponent implements OnInit {
 
-  constructor() { }
+  consumers: Consumer[] = [];
+
+  constructor(private consumerService: ConsumerService) { }
 
   ngOnInit(): void {
+    this.consumerService.getAllConsumers().subscribe({
+      next: (data)=>{this.consumers=data},
+      error: (error)=> {console.error(error)},
+      complete:()=>{}
+    })
   }
 
 }

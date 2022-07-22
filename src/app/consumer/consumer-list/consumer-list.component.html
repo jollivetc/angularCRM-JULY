@@ -1,1 +1,18 @@
-<p>consumer-list works!</p>
+<table>
+  <tr>
+    <th>civility</th>
+    <th>firstname</th>
+    <th>lastname</th>
+    <th>phone</th>
+    <th>email</th>
+    <th>actions</th>
+  </tr>
+  <tr *ngFor="let consumer of consumers">
+    <td>{{consumer.civility}}</td>
+    <td>{{consumer.firstname}}</td>
+    <td>{{consumer.lastname}}</td>
+    <td>{{consumer.phone | phone}}</td>
+    <td>{{consumer.email}}</td>
+    <td></td>
+  </tr>
+</table>
